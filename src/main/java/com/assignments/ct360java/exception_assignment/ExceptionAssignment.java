@@ -1,11 +1,14 @@
 package com.assignments.ct360java.exception_assignment;
 
 import com.assignments.ct360java.exceptions.HorsepowerException;
+import com.assignments.ct360java.exceptions.IpSyntaxException;
 import com.assignments.ct360java.exceptions.KilometersException;
 import com.assignments.ct360java.models.Car;
+import com.assignments.ct360java.models.IpClass;
 import com.assignments.ct360java.models.SuperCar;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -61,6 +64,25 @@ public class ExceptionAssignment {
             LOGGER.log(Level.SEVERE, "Runtime Exception occured " + e2.getMessage());
         } catch (Exception e3){
             LOGGER.log(Level.ALL, "Exception occured " + e3.getMessage());
+        }
+/*
+        try (java.util.Scanner s = new java.util.Scanner(new java.net.URL("https://api.ipify.org").openStream(), "UTF-8").useDelimiter("\\A")) {
+            System.out.println("My current IP address is " + s.next());
+        } catch (java.io.IOException e4) {
+            //e.printStackTrace();
+            LOGGER.log(Level.INFO, "Exception occured " + e4.getMessage());
+        }
+*/
+        try {
+            java.util.Scanner s = new java.util.Scanner(new java.net.URL("https://api.ipify.org").openStream());
+            IpClass ipClass = new IpClass(s.next());
+            System.out.println("My current IP is:" + ipClass.getIp());
+        } catch (MalformedURLException e1) {
+            throw new RuntimeException(e1);
+        } catch (IOException e2) {
+            throw new RuntimeException(e2);
+        } catch (IpSyntaxException e3) {
+            LOGGER.log(Level.SEVERE, "Specific Exception occured  " + e3.getMessage());
         }
     }
 }
