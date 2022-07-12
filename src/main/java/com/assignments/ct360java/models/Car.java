@@ -1,11 +1,18 @@
 package com.assignments.ct360java.models;
 
+import com.assignments.ct360java.exceptions.KilometersException;
+
 public class Car {
     private String brand;
     private String model;
     private Integer kilometers;
 
-    public Car(String brand, String model, Integer kilometers) {
+    public Car(String brand, String model, Integer kilometers) throws KilometersException {
+
+        if (kilometers < 0){
+            throw new KilometersException(kilometers);
+        }
+
         this.brand = brand;
         this.model = model;
         this.kilometers = kilometers;
