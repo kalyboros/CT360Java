@@ -28,17 +28,38 @@ public class ExceptionAssignment {
          */
 
         try {
-            //Car carWrongKilometers = new Car("Tesla", "S", -10);
+            Car carWrongKilometers = new Car("Tesla", "S", -10);
+        } catch (KilometersException e1){
+            //System.out.println( e1.getMessage());
+            LOGGER.log(Level.SEVERE, "Specific Exception occured " + e1.getMessage());
+        } catch (RuntimeException e2){
+            LOGGER.log(Level.SEVERE, "Runtime Exception occured " + e2.getMessage());
+        } catch (Exception e3){
+            LOGGER.log(Level.ALL, "Exception occured " + e3.getMessage());
+        }
+
+        try {
             SuperCar superCarIllegalHorsepower = new SuperCar("Dodge", "Challenger", 100, 900);
         } catch (KilometersException | HorsepowerException e1){
             //System.out.println( e1.getMessage());
-            LOGGER.log(Level.SEVERE, "Specific Exception occured", e1.getMessage());
+            LOGGER.log(Level.SEVERE, "Specific Exception occured " + e1.getMessage());
         } catch (RuntimeException e2){
-            LOGGER.log(Level.SEVERE, "Runtime Exception occured", e2.getMessage());
+            LOGGER.log(Level.SEVERE, "Runtime Exception occured " + e2.getMessage());
         } catch (Exception e3){
-            LOGGER.log(Level.ALL, "Exception occured", e3.getMessage());
+            LOGGER.log(Level.ALL, "Exception occured " + e3.getMessage());
         }
 
 
+        try {
+            SuperCar superCar1 = new SuperCar("Dodge", "Challenger Turbo", 100, 1000);
+            SuperCar superCar2 = new SuperCar("Dodge", "Challenger V6", 100, 1100);
+        } catch (KilometersException | HorsepowerException e1){
+            //System.out.println( e1.getMessage());
+            LOGGER.log(Level.SEVERE, "Specific Exception occured " + e1.getMessage());
+        } catch (RuntimeException e2){
+            LOGGER.log(Level.SEVERE, "Runtime Exception occured " + e2.getMessage());
+        } catch (Exception e3){
+            LOGGER.log(Level.ALL, "Exception occured " + e3.getMessage());
+        }
     }
 }
