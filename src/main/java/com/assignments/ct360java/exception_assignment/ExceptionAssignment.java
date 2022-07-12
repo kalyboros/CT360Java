@@ -6,11 +6,17 @@ import com.assignments.ct360java.models.Car;
 import com.assignments.ct360java.models.SuperCar;
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ExceptionAssignment {
 
+    private static final Logger LOGGER = Logger.getLogger(ExceptionAssignment.class.getName());
+
     public void Assignment() throws KilometersException {
         System.out.println("Start of the exception assignment");
+        System.out.println("Setting up a logger, check his outputs on info and log flags");
+        LOGGER.info("Logger Name: "+LOGGER.getName());
 
         /*
         To demonstrate acquired knowledge, i created spring app, where the scenario is as follows:
@@ -22,14 +28,15 @@ public class ExceptionAssignment {
          */
 
         try {
-            Car carWrongKilometers = new Car("Tesla", "S", -10);
-            SuperCar superCarIllegalHorsepower = new SuperCar("Dodge", "Challenger", -100, 900);
+            //Car carWrongKilometers = new Car("Tesla", "S", -10);
+            SuperCar superCarIllegalHorsepower = new SuperCar("Dodge", "Challenger", 100, 900);
         } catch (KilometersException | HorsepowerException e1){
-            System.out.println( e1.getMessage());
+            //System.out.println( e1.getMessage());
+            LOGGER.log(Level.SEVERE, "Specific Exception occured", e1.getMessage());
         } catch (RuntimeException e2){
-            System.out.println( e2.getMessage());
+            LOGGER.log(Level.SEVERE, "Runtime Exception occured", e2.getMessage());
         } catch (Exception e3){
-            System.out.println( e3.getMessage());
+            LOGGER.log(Level.ALL, "Exception occured", e3.getMessage());
         }
 
 

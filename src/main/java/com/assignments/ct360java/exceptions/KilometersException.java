@@ -4,7 +4,7 @@ public class KilometersException extends Exception {
     private Integer kilometers;
 
     public KilometersException(Integer kilometers){
-        super("Kilometers can not be below 0! Yours is: " + kilometers + "\n");
+        super("Kilometers can not be below 0! Yours is: " + kilometers);
         this.kilometers = kilometers;
     }
 
