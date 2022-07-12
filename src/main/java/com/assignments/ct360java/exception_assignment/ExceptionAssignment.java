@@ -21,9 +21,10 @@ public class ExceptionAssignment {
         /*
         To demonstrate acquired knowledge, i created spring app, where the scenario is as follows:
         We have a POJO Car, which consists of brand, model and kilometers driven so far.
+        We have a POJO SuperCar, which consists of Car and horsepower.
 
         Demonstration scenarios:
-        1. For unchecked exception (which occurs inside the code/program) I will create a new instance of Car with negative kilometers driven.
+        1. For unchecked exception (which occurs inside the code/program) I will create a new instance of Car with negative kilometers driven and supercar with too much horsepower.
         2. For checked exception (which occurs outside the code/program) I will request data from external api and then validate it.
          */
 
