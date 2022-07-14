@@ -23,7 +23,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.*;
 
 @WebMvcTest
-public class CarControllerTest {
+class CarControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -35,7 +35,7 @@ public class CarControllerTest {
     private ObjectMapper objectMapper;
 
     @Test
-    public void createNewCarTest() throws Exception {
+    void createNewCarTest() throws Exception {
 
         // here we create a new entity that will be written to db, also a condition for comparison
         Car car = Car.builder()
@@ -66,7 +66,7 @@ public class CarControllerTest {
 
     // expect same list size
     @Test
-    public void getAllCarsTest() throws Exception{
+    void getAllCarsTest() throws Exception{
         // given precondition for comaprison
         List<Car> listOfCars = new ArrayList<>();
         listOfCars.add(Car.builder().brand("Tesla").model("S").kilometers(110).build());
@@ -87,7 +87,7 @@ public class CarControllerTest {
 
     // positive scenario - compare our hardcoded data and given id, expect same returned data
     @Test
-    public void compareDataThroughValidIdAndDataTest() throws Exception{
+    void compareDataThroughValidIdAndDataTest() throws Exception{
         // given - precondition
         Integer carId = 1;
         Car car = Car.builder()
@@ -111,7 +111,7 @@ public class CarControllerTest {
 
     // negative scenario, here we provide wrong id
     @Test
-    public void compareDataThroughValidIdTestNoData() throws Exception{
+    void compareDataThroughValidIdTestNoData() throws Exception{
         // given - precondition or setup
         Integer carId = 4;
         Car car = Car.builder()
@@ -132,7 +132,7 @@ public class CarControllerTest {
 
     // positive scenario - we send update data and compare the returned updated data
     @Test
-    public void updateCarPositiveScenarioTest() throws Exception{
+    void updateCarPositiveScenarioTest() throws Exception{
         // given - precondition or setup
         Integer carId = 1;
         Car savedCar = Car.builder()
@@ -166,7 +166,7 @@ public class CarControllerTest {
     }
 
     @Test
-    public void updateCarNegativeScenarioTest() throws Exception{
+    void updateCarNegativeScenarioTest() throws Exception{
         // given - precondition or setup
         Integer carId = 1;
         Car savedCar = Car.builder()
@@ -197,7 +197,7 @@ public class CarControllerTest {
     }
 
     @Test
-    public void deleteCarTest() throws Exception{
+    void deleteCarTest() throws Exception{
         // given - precondition
         Integer carId = 1;
         willDoNothing().given(carService).deleteCar(carId);
