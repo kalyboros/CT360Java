@@ -11,6 +11,7 @@ public class Ct360JavaApplication {
 
         SpringApplication.run(Ct360JavaApplication.class, args);
 
+
     }
 
 }
