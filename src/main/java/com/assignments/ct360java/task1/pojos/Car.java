@@ -1,6 +1,6 @@
-package com.assignments.ct360java.models;
+package com.assignments.ct360java.task1.pojos;
 
-import com.assignments.ct360java.exceptions.KilometersException;
+import com.assignments.ct360java.task1.exceptions.KilometersException;
 
 public class Car {
     private String brand;

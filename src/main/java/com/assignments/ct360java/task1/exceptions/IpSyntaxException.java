@@ -1,4 +1,4 @@
-package com.assignments.ct360java.exceptions;
+package com.assignments.ct360java.task1.exceptions;
 
 public class IpSyntaxException extends Exception {
     private String ip;

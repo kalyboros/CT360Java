@@ -1,7 +1,7 @@
-package com.assignments.ct360java.models;
+package com.assignments.ct360java.task1.pojos;
 
-import com.assignments.ct360java.exceptions.HorsepowerException;
-import com.assignments.ct360java.exceptions.KilometersException;
+import com.assignments.ct360java.task1.exceptions.HorsepowerException;
+import com.assignments.ct360java.task1.exceptions.KilometersException;
 
 public class SuperCar extends Car {
     private Integer horsepower;

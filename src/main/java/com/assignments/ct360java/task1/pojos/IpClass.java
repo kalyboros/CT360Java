@@ -1,5 +1,5 @@
-package com.assignments.ct360java.models;
-import com.assignments.ct360java.exceptions.IpSyntaxException;
+package com.assignments.ct360java.task1.pojos;
+import com.assignments.ct360java.task1.exceptions.IpSyntaxException;
 
 import java.util.regex.*;
 public class IpClass {

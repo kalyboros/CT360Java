@@ -1,4 +1,4 @@
-package com.assignments.ct360java.exceptions;
+package com.assignments.ct360java.task1.exceptions;
 
 public class HorsepowerException extends Exception {
     private Integer horsepower;

@@ -1,11 +1,11 @@
-package com.assignments.ct360java.exception_assignment;
+package com.assignments.ct360java.task1.exception_assignment;
 
-import com.assignments.ct360java.exceptions.HorsepowerException;
-import com.assignments.ct360java.exceptions.IpSyntaxException;
-import com.assignments.ct360java.exceptions.KilometersException;
-import com.assignments.ct360java.models.Car;
-import com.assignments.ct360java.models.IpClass;
-import com.assignments.ct360java.models.SuperCar;
+import com.assignments.ct360java.task1.exceptions.HorsepowerException;
+import com.assignments.ct360java.task1.exceptions.IpSyntaxException;
+import com.assignments.ct360java.task1.exceptions.KilometersException;
+import com.assignments.ct360java.task1.pojos.Car;
+import com.assignments.ct360java.task1.pojos.IpClass;
+import com.assignments.ct360java.task1.pojos.SuperCar;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
