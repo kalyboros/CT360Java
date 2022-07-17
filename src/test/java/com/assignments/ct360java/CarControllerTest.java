@@ -3,7 +3,10 @@ package com.assignments.ct360java;
 import com.assignments.ct360java.task2and3.entities.Car;
 import com.assignments.ct360java.task2and3.services.CarService;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -14,6 +17,7 @@ import org.springframework.test.web.servlet.ResultActions;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Logger;
 
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.BDDMockito.*;
@@ -25,6 +29,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 @WebMvcTest
 class CarControllerTest {
 
+    private static final Logger LOGGER = Logger.getLogger(CarControllerTest.class.getName());
+
     @Autowired
     private MockMvc mockMvc;
 
@@ -34,9 +40,19 @@ class CarControllerTest {
     @Autowired
     private ObjectMapper objectMapper;
 
-    @Test
-    void createNewCarTest() throws Exception {
+    @BeforeAll
+    static void beforeAll() {
+        LOGGER.info("Starting Test Class with logger: " + LOGGER.getName());
+    }
 
+    @AfterAll
+    static void afterAll() {
+        LOGGER.info("Finished executing test class");
+    }
+
+    @Test
+    void createNewCarTest(TestInfo testInfo) throws Exception {
+        LOGGER.info("Starting Test: " + testInfo.getDisplayName());
         // here we create a new entity that will be written to db, also a condition for comparison
         Car car = Car.builder()
                 .brand("Renault")
@@ -62,11 +78,14 @@ class CarControllerTest {
                         is(car.getModel())))
                 .andExpect(jsonPath("$.kilometers",
                         is(car.getKilometers())));
+
+        LOGGER.info("Ending Test: " + testInfo.getDisplayName());
     }
 
     // expect same list size
     @Test
-    void getAllCarsTest() throws Exception{
+    void getAllCarsTest(TestInfo testInfo) throws Exception{
+        LOGGER.info("Starting Test: " + testInfo.getDisplayName());
         // given precondition for comaprison
         List<Car> listOfCars = new ArrayList<>();
         listOfCars.add(Car.builder().brand("Tesla").model("S").kilometers(110).build());
@@ -83,11 +102,13 @@ class CarControllerTest {
                 .andExpect(jsonPath("$.size()",
                         is(listOfCars.size())));
 
+        LOGGER.info("Ending Test: " + testInfo.getDisplayName());
     }
 
     // positive scenario - compare our hardcoded data and given id, expect same returned data
     @Test
-    void compareDataThroughValidIdAndDataTest() throws Exception{
+    void compareDataThroughValidIdAndDataTest(TestInfo testInfo) throws Exception{
+        LOGGER.info("Starting Test: " + testInfo.getDisplayName());
         // given - precondition
         Integer carId = 1;
         Car car = Car.builder()
@@ -107,11 +128,13 @@ class CarControllerTest {
                 .andExpect(jsonPath("$.model", is(car.getModel())))
                 .andExpect(jsonPath("$.kilometers", is(car.getKilometers())));
 
+        LOGGER.info("Ending Test: " + testInfo.getDisplayName());
     }
 
     // negative scenario, here we provide wrong id
     @Test
-    void compareDataThroughValidIdTestNoData() throws Exception{
+    void compareDataThroughValidIdTestNoData(TestInfo testInfo) throws Exception{
+        LOGGER.info("Starting Test: " + testInfo.getDisplayName());
         // given - precondition or setup
         Integer carId = 4;
         Car car = Car.builder()
@@ -128,11 +151,13 @@ class CarControllerTest {
         response.andExpect(status().isNotFound())
                 .andDo(print());
 
+        LOGGER.info("Ending Test: " + testInfo.getDisplayName());
     }
 
     // positive scenario - we send update data and compare the returned updated data
     @Test
-    void updateCarPositiveScenarioTest() throws Exception{
+    void updateCarPositiveScenarioTest(TestInfo testInfo) throws Exception{
+        LOGGER.info("Starting Test: " + testInfo.getDisplayName());
         // given - precondition or setup
         Integer carId = 1;
         Car savedCar = Car.builder()
@@ -163,10 +188,13 @@ class CarControllerTest {
                 .andExpect(jsonPath("$.brand", is(updatedCar.getBrand())))
                 .andExpect(jsonPath("$.model", is(updatedCar.getModel())))
                 .andExpect(jsonPath("$.kilometers", is(updatedCar.getKilometers())));
+
+        LOGGER.info("Ending Test: " + testInfo.getDisplayName());
     }
 
     @Test
-    void updateCarNegativeScenarioTest() throws Exception{
+    void updateCarNegativeScenarioTest(TestInfo testInfo) throws Exception{
+        LOGGER.info("Starting Test: " + testInfo.getDisplayName());
         // given - precondition or setup
         Integer carId = 1;
         Car savedCar = Car.builder()
@@ -194,10 +222,13 @@ class CarControllerTest {
         // then - verify the output
         response.andExpect(status().isNotFound())
                 .andDo(print());
+
+        LOGGER.info("Ending Test: " + testInfo.getDisplayName());
     }
 
     @Test
-    void deleteCarTest() throws Exception{
+    void deleteCarTest(TestInfo testInfo) throws Exception{
+        LOGGER.info("Starting Test: " + testInfo.getDisplayName());
         // given - precondition
         Integer carId = 1;
         willDoNothing().given(carService).deleteCar(carId);
@@ -208,6 +239,8 @@ class CarControllerTest {
         // then - verify the output
         response.andExpect(status().isOk())
                 .andDo(print());
+
+        LOGGER.info("Ending Test: " + testInfo.getDisplayName());
     }
 
 
