@@ -18,12 +18,6 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public Car saveCar(Car car) {
-        /*
-        Optional<Car> savedCar = carRepository.findByBrand(car.getBrand());
-        if(savedCar.isPresent()){
-            throw new Exception("Car with that brand already exists:" + car.getBrand());
-        }
-        */
         return carRepository.save(car);
 
     }
